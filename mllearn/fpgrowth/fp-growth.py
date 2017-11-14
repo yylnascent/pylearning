@@ -10,7 +10,7 @@ class FPNode(object):
         self.__node_name = node_name
         self.__occur_cn = occur_cn
         self.__parent_node = parent_node
-        self.__fpheader_link = None
+        self.__next_node = None
         self.__children = {}
     
     def inc(self, occur_cn=1):
@@ -27,6 +27,30 @@ class FPNode(object):
 
     def append_child(self, child):
         self.__children[child.name] = child
+
+    @property
+    def next_node(self):
+        return self.__next_node
+
+    @next_node.setter
+    def next_node(self, next_node):
+        self.__next_node = next_node
+
+class FPHeader(object):
+    """
+        FPTree Header
+    """
+    def __init__(self, node_name, next_node):
+        self.__node_name = node_name
+        self.__next_node = next_node
+
+    @property
+    def next_node(self):
+        return self.__next_node
+
+    @next_node.setter
+    def next_node(self, next_node):
+        self.__next_node = next_node
 
 if __name__ == "__main__":
     root  = FPNode('root', 9, None)
